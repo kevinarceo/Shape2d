@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shapes Drawing</title>
+    <style>
+        body {
+            background-color:#48404d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            grid-gap: 20px;
+        }
+
+        canvas {
+            display: block;
+            margin: 10px auto;
+            border-radius: 8px;
+        }
+
+        h2 {
+            display: none; /* Hide titles */
+        }
+    </style>
+</head>
+<body>
+
+<div class="grid-container">
+    <div class="shape-container">
+        <canvas id="square" width="100" height="100"></canvas>
+    </div>
+
+    <div class="shape-container">
+        <canvas id="hexagon" width="100" height="100"></canvas>
+    </div>
+
+    <div class="shape-container">
+        <canvas id="ellipse" width="100" height="100"></canvas>
+    </div>
+
+    <div class="shape-container">
+        <canvas id="rhombus" width="100" height="100"></canvas>
+    </div>
+
+    <div class="shape-container">
+        <canvas id="arrow" width="100" height="100"></canvas>
+    </div>
+
+    <div class="shape-container">
+        <canvas id="crescent" width="100" height="100"></canvas>
+    </div>
+
+    <div class="shape-container">
+        <canvas id="pentagram" width="100" height="100"></canvas>
+    </div>
+
+    <div class="shape-container">
+        <canvas id="cloud" width="100" height="100"></canvas>
+    </div>
+
+    <div class="shape-container">
+        <canvas id="triangleWave" width="100" height="100"></canvas>
+    </div>
+
+    <div class="shape-container">
+        <canvas id="starburst" width="100" height="100"></canvas>
+    </div>
+
+    <div class="shape-container">
+        <canvas id="teardrop" width="100" height="100"></canvas>
+    </div>
+
+    <div class="shape-container">
+        <canvas id="hourglass" width="100" height="100"></canvas>
+    </div>
+
+    <!-- Add more shapes as needed -->
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Example for Square
+        var squareCanvas = document.getElementById('square').getContext('2d');
+        squareCanvas.fillStyle = '#9bd59d';
+        squareCanvas.fillRect(10, 10, 80, 80);
+
+        // Example for Hexagon
+        var hexagonCanvas = document.getElementById('hexagon').getContext('2d');
+        hexagonCanvas.fillStyle = '#cfeef1';
+        var xHexagon = 50;
+        var yHexagon = 50;
+        var radiusHexagon = 40;
+        var sidesHexagon = 6;
+        var startAngleHexagon = 0;
+        var endAngleHexagon = 2 * Math.PI;
+        hexagonCanvas.moveTo(xHexagon + radiusHexagon * Math.cos(startAngleHexagon), yHexagon + radiusHexagon * Math.sin(startAngleHexagon));
+        for (var i = 0; i < sidesHexagon; i++) {
+            hexagonCanvas.lineTo(xHexagon + radiusHexagon * Math.cos(startAngleHexagon + (i + 1) * endAngleHexagon / sidesHexagon), yHexagon + radiusHexagon * Math.sin(startAngleHexagon + (i + 1) * endAngleHexagon / sidesHexagon));
+        }
+        hexagonCanvas.closePath();
+        hexagonCanvas.fill();
+
+        // Example for Ellipse
+        var ellipseCanvas = document.getElementById('ellipse').getContext('2d');
+        ellipseCanvas.fillStyle = '#ffb085';
+        ellipseCanvas.beginPath();
+        ellipseCanvas.ellipse(50, 50, 40, 20, 0, 0, 2 * Math.PI);
+        ellipseCanvas.fill();
+
+        // Example for Rhombus
+        var rhombusCanvas = document.getElementById('rhombus').getContext('2d');
+        rhombusCanvas.fillStyle = '#9bd5c8';
+        rhombusCanvas.beginPath();
+        rhombusCanvas.moveTo(50, 10);
+        rhombusCanvas.lineTo(90, 50);
+        rhombusCanvas.lineTo(50, 90);
+        rhombusCanvas.lineTo(10, 50);
+        rhombusCanvas.closePath();
+        rhombusCanvas.fill();
+
+        // Example for Arrow
+        var arrowCanvas = document.getElementById('arrow').getContext('2d');
+        arrowCanvas.fillStyle = '#dbc7e6';
+        arrowCanvas.beginPath();
+        arrowCanvas.moveTo(50, 10);
+        arrowCanvas.lineTo(90, 50);
+        arrowCanvas.lineTo(70, 50);
+        arrowCanvas.lineTo(70, 90);
+        arrowCanvas.lineTo(30, 90);
+        arrowCanvas.lineTo(30, 50);
+        arrowCanvas.lineTo(10, 50);
+        arrowCanvas.closePath();
+        arrowCanvas.fill();
+
+        // Example for Crescent
+        var crescentCanvas = document.getElementById('crescent').getContext('2d');
+        crescentCanvas.fillStyle = '#fce4b3';
+        crescentCanvas.beginPath();
+        crescentCanvas.arc(40, 50, 40, 0, Math.PI * 2);
+        crescentCanvas.arc(60, 50, 40, 0, Math.PI * 2, true);
+        crescentCanvas.closePath();
+        crescentCanvas.fill();
+
+        // Example for Pentagram
+        var pentagramCanvas = document.getElementById('pentagram').getContext('2d');
+        drawPentagram(pentagramCanvas, 50, 50, 30, 5, '#ffd700');
+
+        // Example for Cloud
+        var cloudCanvas = document.getElementById('cloud').getContext('2d');
+        cloudCanvas.fillStyle = '#9bd59d';
+        cloudCanvas.beginPath();
+        cloudCanvas.arc(30, 70, 20, 0, Math.PI * 2);
+        cloudCanvas.arc(50, 60, 25, 0, Math.PI * 2);
+        cloudCanvas.arc(70, 70, 20, 0, Math.PI * 2);
+        cloudCanvas.closePath();
+        cloudCanvas.fill();
+
+        // Example for Triangle Wave
+        var triangleWaveCanvas = document.getElementById('triangleWave').getContext('2d');
+        triangleWaveCanvas.fillStyle = '#e8d5c9';
+        triangleWaveCanvas.beginPath();
+        triangleWaveCanvas.moveTo(10, 50);
+        triangleWaveCanvas.lineTo(30, 10);
+        triangleWaveCanvas.lineTo(50, 50);
+        triangleWaveCanvas.lineTo(70, 10);
+        triangleWaveCanvas.lineTo(90, 50);
+        triangleWaveCanvas.closePath();
+        triangleWaveCanvas.fill();
+
+        // Example for Starburst
+        var starburstCanvas = document.getElementById('starburst').getContext('2d');
+        drawStarburst(starburstCanvas, 50, 50, 30, 12, '#ffd700');
+
+        // Example for Teardrop
+        var teardropCanvas = document.getElementById('teardrop').getContext('2d');
+        teardropCanvas.fillStyle = '#fce4b3';
+        teardropCanvas.beginPath();
+        teardropCanvas.moveTo(50, 10);
+        teardropCanvas.bezierCurveTo(10, 40, 90, 40, 50, 90);
+        teardropCanvas.closePath();
+        teardropCanvas.fill();
+
+        // Example for Hourglass
+        var hourglassCanvas = document.getElementById('hourglass').getContext('2d');
+        hourglassCanvas.fillStyle = '#9bd5c8';
+        hourglassCanvas.beginPath();
+        hourglassCanvas.moveTo(30, 10);
+        hourglassCanvas.lineTo(70, 10);
+        hourglassCanvas.quadraticCurveTo(80, 50, 70, 90);
+        hourglassCanvas.lineTo(30, 90);
+        hourglassCanvas.quadraticCurveTo(20, 50, 30, 10);
+        hourglassCanvas.closePath();
+        hourglassCanvas.fill();
+    });
+
+    function drawPentagram(ctx, x, y, radius, sides, fillColor) {
+        var points = sides || 5;
+        ctx.fillStyle = fillColor;
+
+        ctx.beginPath();
+        ctx.moveTo(x, y + radius);
+        for (var i = 0; i < 2 * points + 1; i++) {
+            var r = (i % 2 == 0) ? radius : radius / 2;
+            var a = Math.PI * i / points;
+            ctx.lineTo(x + r * Math.sin(a), y + r * Math.cos(a));
+        }
+        ctx.closePath();
+
+        if (fillColor)
+            ctx.fill();
+    }
+
+    function drawStarburst(ctx, x, y, radius, spikes, fillColor) {
+        var rot = (Math.PI / 2) * 3;
+        var xRot = x + Math.cos(rot) * radius;
+        var yRot = y + Math.sin(rot) * radius;
+
+        var step = Math.PI / spikes;
+
+        ctx.fillStyle = fillColor;
+        ctx.beginPath();
+        ctx.moveTo(x, y - radius);
+
+        for (var i = 0; i < spikes; i++) {
+            x = x + Math.cos(rot) * radius;
+            y = y + Math.sin(rot) * radius;
+            ctx.lineTo(x, y);
+            rot += step;
+
+            x = x + Math.cos(rot) * (radius / 2);
+            y = y + Math.sin(rot) * (radius / 2);
+            ctx.lineTo(x, y);
+            rot += step;
+        }
+
+        ctx.lineTo(xRot, yRot);
+        ctx.closePath();
+        ctx.fill();
+    }
+</script>
+
+</body>
+</html>
